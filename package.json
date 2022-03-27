@@ -31,8 +31,8 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "js-tools",
-  "author": "damenor",
+  "name": "@damenor/js-tools",
+  "author": "David Menor <damenor.develop@gmail.com>",
   "module": "dist/js-tools.esm.js",
   "size-limit": [
     {
