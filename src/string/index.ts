@@ -2,12 +2,33 @@
  * Capitalize all words
  * 
  * Example:
- * const wordsConverted = STRING.allWordsToUpperCase('hello world!') // "Hello World!"
+ * const wordsConverted = STRING.toUpperCase('hello world!') // "Hello World!"
+ * const wordsConverted = STRING.toUpperCase('hello world!', true) // "Hello world!"
  * 
  * @param str string to convert
+ * @param onlyFirst boolean optional for only change first letter
  * @returns string converted
  */
-const allWordsToUpperCase = (str: string) => str.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase())
+const toUpperCase = (str: string, onlyFirst?: boolean) => {
+  if(onlyFirst) return str.charAt(0).toUpperCase() + str.slice(1)
+  return str.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase())
+}
+
+/**
+ * Lowercase all words
+ * 
+ * Example:
+ * const wordsConverted = STRING.toLowerCase('Hello World!') // "hello world!"
+ * const wordsConverted = STRING.toLowerCase('Hello World!', true) // "hello World!"
+ * 
+ * @param str string to convert
+ * @param onlyFirst boolean optional for only change first letter
+ * @returns string converted
+ */
+const toLowerCase = (str: string, onlyFirst?: boolean) => {
+  if(onlyFirst) return str.charAt(0).toLowerCase() + str.slice(1)
+  return str.replace(/^(.)|\s+(.)/g, (c) => c.toLowerCase())
+}
 
 /**
  * Escape html code
@@ -50,9 +71,26 @@ const random = (): string => Math.random().toString(36).slice(2)
  */
 const toCamelCase = (str: string) => str.trim().replace(/[-_\s]+(.)?/g, (_, c) => (c ? c.toUpperCase() : ''))
 
+/**
+ * replace all text in string
+ * 
+ * Example:
+ * const textReplaced = STRING.replaceall(text, textToReplace, textReplace) 
+ * 
+ * @param str string complete
+ * @param search string to search for replace
+ * @param replace new string
+ * @returns string converted
+ */
+const replaceAll = (str: string, search: string, replace: string) => str.split(search).join(replace)
+
 export const STRING = {
-  allWordsToUpperCase,
+  toUpperCase,
+  toLowerCase,
   htmlEscape,
   random,
+  replaceAll,
   toCamelCase,
 }
+
+
