@@ -1,17 +1,18 @@
 const allWordsToUpperCase = (str: string) => str.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase())
 
-const htmlEscape = (str: string) =>
-  str.replace(
+const htmlEscape = (str: string) => {
+  const obj: any = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  }
+  return str.replace(
     /[&<>"']/g,
-    (m) =>
-      ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;",
-      }[m] as any)
-  );
+    (m) => (obj[m] as any)
+  )
+}
 
 const random = (): string => Math.random().toString(36).slice(2)
 

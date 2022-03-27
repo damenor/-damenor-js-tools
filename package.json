@@ -1,48 +1,55 @@
 {
-  "name": "@damenor/js-tools",
-  "version": "0.0.1",
-  "description": "Tools for Javascript",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "umd:main": "dist/umd/index.js",
-  "types": "dist/types/index.d.js",
-  "scripts": {
-    "build": "npm run build:cjs && npm run build:esm && npm run build:umd && npm run build:types",
-    "build:cjs": "node tools/cleanup cjs && tsc -p config/tsconfig.cjs.json",
-    "build:esm": "node tools/cleanup esm && tsc -p config/tsconfig.esm.json",
-    "build:umd": "node tools/cleanup umd && webpack --config config/webpack.config.js",
-    "build:types": "node tools/cleanup types && tsc -p config/tsconfig.types.json",
-    "clean": "node tools/cleanup",
-    "package": "npm run build && npm pack",
-    "addscope": "node tools/packagejson name @damenor/js-tools"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "files": [
-    "dist"
-  ],
-  "keywords": [
-    "typescript",
-    "javascript",
-    "tools",
-    "helpers"
-  ],
-  "author": "David Menor <damenor.develop@gmail.com>",
+  "version": "0.1.0",
   "license": "MIT",
-  "homepage": "https://github.com/damenor/-damenor-js-tools",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:damenor/-damenor-js-tools.git"
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
   },
-  "bugs": {
-    "url": "https://github.com/damenor/-damenor-js-tools/issues"
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
   },
-  "dependencies": {},
+  "peerDependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "js-tools",
+  "author": "damenor",
+  "module": "dist/js-tools.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/js-tools.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/js-tools.esm.js",
+      "limit": "10 KB"
+    }
+  ],
   "devDependencies": {
-    "ts-loader": "^9.2.5",
-    "typescript": "^4.4.3",
-    "webpack": "^5.52.1",
-    "webpack-cli": "^4.8.0"
+    "@size-limit/preset-small-lib": "^7.0.8",
+    "husky": "^7.0.4",
+    "size-limit": "^7.0.8",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.6.3"
   }
 }
