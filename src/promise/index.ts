@@ -22,7 +22,7 @@ const pause = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
  * @param onError optional ()
  * @returns Promise
  */
- export const tryCatchWrapper = async (promise: Promise<any>, onError?: (error: any) =>  void) => {
+ const tryCatchWrapper = async (promise: Promise<any>, onError?: (error: any) =>  void) => {
   try {
     return await promise
   } catch (error) {
