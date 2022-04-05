@@ -1,1 +1,5 @@
-export * from './mergeObject'
+import { mergeObjects } from './mergeObject'
+
+export const OBJECT = {
+  mergeObjects
+}
